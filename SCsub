@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+Import("env")
+Import('env_modules')
+
+env_testing = env_modules.Clone()
+
+if not env.msvc:
+    CXXFLAGS=['-std=c++17']
+else:
+    CXXFLAGS=['/std:c++17']
+
+env_testing.Append(CXXFLAGS=CXXFLAGS)
+
+env_testing.add_source_files(env.modules_sources,'*.cpp')
